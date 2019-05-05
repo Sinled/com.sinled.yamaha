@@ -1,0 +1,51 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [
+    "prettier"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "react/prop-types": [1],
+    "linebreak-style": "off",
+    "max-len": "off",
+    "indent": ["error", 4, { "SwitchCase": 1 }],
+    "no-alert": "off",
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
+    "no-plusplus": "off",
+    "no-unused-expressions": [2, { "allowShortCircuit": true, "allowTernary": true }],
+    "no-trailing-spaces": ["error", {"skipBlankLines": true}],
+    "no-nested-ternary": "off",
+    "no-case-declarations": "off",
+    "no-console": ["error", { "allow": ["warn", "error"] }] ,
+    "indentSwitchCase": true,
+    "prettier/prettier": ["error", {
+      "printWidth": 120,
+      "tabWidth": 4,
+      "singleQuote": true,
+      "semi": true,
+      "arrowParens": "always",
+      "trailingComma": "all"
+    }],
+    "node/no-missing-require": ["error", {
+      "allowModules": ["homey"]
+    }],
+
+    "no-prototype-builtins": "off"
+  }
+}

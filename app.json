@@ -1,24 +1,24 @@
 {
-  "id": "com.sinled.yamaha",
-  "version": "0.0.1",
-  "compatibility": ">=2.0.0",
-  "sdk": 2,
-  "name": {
-    "en": "Yamaha MusicCast"
-  },
-  "description": {
-    "en": "Basic functionality for Yamaha MusicCast devices"
-  },
-  "category": [
-    "music"
-  ],
-  "permissions": [],
-  "images": {
-    "large": "/assets/images/large.png",
-    "small": "/assets/images/small.png"
-  },
-  "author": {
-    "name": "Dmytro Sd",
-    "email": "sinled@gmail.com"
-  }
+    "id": "com.sinled.yamaha",
+    "version": "0.0.1",
+    "compatibility": ">=2.0.0",
+    "sdk": 2,
+    "name": {
+        "en": "Yamaha MusicCast"
+    },
+    "description": {
+        "en": "Basic functionality for Yamaha MusicCast devices"
+    },
+    "category": [
+        "music"
+    ],
+    "permissions": [],
+    "images": {
+        "large": "/assets/images/large.png",
+        "small": "/assets/images/small.png"
+    },
+    "author": {
+        "name": "Dmytro Sd",
+        "email": "sinled@gmail.com"
+    }
 }
