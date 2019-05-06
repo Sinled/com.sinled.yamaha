@@ -3,5 +3,8 @@
   "version": "0.0.1",
   "main": "app.js",
   "author": "sd",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "yamaha-yxc-nodejs": "^0.0.10"
+  }
 }
