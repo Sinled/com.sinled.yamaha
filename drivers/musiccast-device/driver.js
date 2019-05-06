@@ -3,20 +3,22 @@
 const Homey = require('homey');
 const Yamaha = require('yamaha-yxc-nodejs');
 
-class MyDriver extends Homey.Driver {
+class MusicCastDriver extends Homey.Driver {
     onInit() {
-        this.log('MyDriver has been inited');
+        this.log('MusicCastDriver has been inited');
     }
 
     async onPairListDevices(data, callback) {
         const yamaha = new Yamaha();
         try {
-            const [ip, name, _, id] = await yamaha.discover();
+            const [ip, name, model, id] = await yamaha.discover();
             callback(null, [
                 {
-                    name,
+                    name: `[${model}] ${name}`,
                     data: {
                         id,
+                    },
+                    settings: {
                         ip,
                     },
                 },
@@ -27,4 +29,4 @@ class MyDriver extends Homey.Driver {
     }
 }
 
-module.exports = MyDriver;
+module.exports = MusicCastDriver;

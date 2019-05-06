@@ -52,7 +52,27 @@
                 "large": "/drivers/musiccast-device/assets/images/large.png",
                 "small": "/drivers/musiccast-device/assets/images/small.png"
             },
-            "icon": "/drivers/musiccast-device/assets/icon.svg"
+            "icon": "/drivers/musiccast-device/assets/icon.svg",
+            "settings": [
+                {
+                    "type": "group",
+                    "label": {
+                        "en": "General settings"
+                    },
+                    "children": [
+                        {
+                            "id": "ip",
+                            "type": "text",
+                            "label": {
+                                "en": "Device IP"
+                            },
+                            "hint": {
+                                "en": "IP of device, it is usually detected when new device is added, but depending on your router settings it may change, it is good idea to have reserved ip for MusicCast device"
+                            }
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }
