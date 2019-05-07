@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const Yamaha = require('yamaha-yxc-nodejs');
+const MusicCastDevice = require('./real-device');
 
 class MusicCastDriver extends Homey.Driver {
     onInit() {
@@ -9,20 +9,9 @@ class MusicCastDriver extends Homey.Driver {
     }
 
     async onPairListDevices(data, callback) {
-        const yamaha = new Yamaha();
         try {
-            const [ip, name, model, id] = await yamaha.discover();
-            callback(null, [
-                {
-                    name: `[${model}] ${name}`,
-                    data: {
-                        id,
-                    },
-                    settings: {
-                        ip,
-                    },
-                },
-            ]);
+            const devices = await MusicCastDevice.discover();
+            callback(null, devices);
         } catch (e) {
             callback(e);
         }
