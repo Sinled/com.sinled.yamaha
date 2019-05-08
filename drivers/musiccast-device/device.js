@@ -12,9 +12,18 @@ class HomeyMusicCastDevice extends Homey.Device {
 
         this.device = new MusicCastDevice({ ip, maxVolume, minVolume });
 
+        this.setupListeners();
+    }
+
+    setupListeners() {
+        // Homey devices listeners
         this.registerCapabilityListener('onoff', this.onCapabilityOnOff.bind(this));
         this.registerCapabilityListener('volume_set', this.onCapabilityVolumeSet.bind(this));
         this.registerCapabilityListener('volume_mute', this.onCapabilityVolumeMute.bind(this));
+        // Real devices listeners
+        this.device.on('onPowerStateChange', this.onRealDeviceStateChange.bind(this, 'onoff'));
+        this.device.on('onDeviceVolumeChange', this.onRealDeviceStateChange.bind(this, 'volume_set'));
+        this.device.on('onDeviceMuteChange', this.onRealDeviceStateChange.bind(this, 'volume_mute'));
     }
 
     async onCapabilityOnOff(isOn, options, callback) {
@@ -44,7 +53,15 @@ class HomeyMusicCastDevice extends Homey.Device {
         }
     }
 
+    onRealDeviceStateChange(capability, newValue) {
+        const currentValue = this.getCapabilityValue(capability);
+        if (currentValue !== newValue) {
+            this.setCapabilityValue(capability, newValue);
+        }
+    }
+
     async onSettings(oldSettingsObj, newSettingsObj, changedKeysArr) {
+        // If user is trying to change volume limits, validate and sync data with facade
         VOLUME_LIMIT_KEYS.forEach((key) => {
             if (changedKeysArr.includes(key)) {
                 this.device[key] = newSettingsObj[key];
@@ -53,6 +70,7 @@ class HomeyMusicCastDevice extends Homey.Device {
     }
 
     onDeleted() {
+        this.device.removeAllListeners();
         this.device.destroy();
     }
 }

@@ -4,7 +4,7 @@ const Yamaha = require('yamaha-yxc-nodejs');
 const EventEmitter = require('events');
 const middleValueFromTriplet = require('../../utils/middle-value-from-triplet');
 
-const POLL_INTERVAL = 5 * 1000; // 5 seconds
+const POLL_INTERVAL = 3 * 1000; // 5 seconds
 
 class MusicCastDeviceFacade extends EventEmitter {
     static async discover() {
@@ -84,7 +84,7 @@ class MusicCastDeviceFacade extends EventEmitter {
     set deviceMute(value) {
         if (value !== this._mute) {
             this._mute = value;
-            this.emit('onDeviceMuteChange', this.mute);
+            this.emit('onDeviceMuteChange', this._mute);
         }
         return this._mute;
     }
@@ -119,7 +119,9 @@ class MusicCastDeviceFacade extends EventEmitter {
         // volumeAbs should be between minVolume and maxVolume, if not, use corresponding min or max value
         const { minVolume, maxVolume } = this;
         const volume = middleValueFromTriplet(minVolume, maxVolume, volumeAbs);
-        return (volume - minVolume) / (maxVolume - minVolume);
+        const volumeRelative = (volume - minVolume) / (maxVolume - minVolume);
+        const volumePercents = Number.parseFloat(volumeRelative.toFixed(2));
+        return volumePercents;
     }
 
     set maxVolume(volume) {

@@ -1,5 +1,7 @@
+const isNumber = (value) => !isNaN(parseInt(value, 10));
+
 const middleValueFromTriplet = (...args) => {
-    if (args.filter((_) => _).length !== 3) {
+    if (args.filter(isNumber).length !== 3) {
         throw Error(`You should provide three values to middleValueFromTriplet, you provided ${args}`);
     }
 
