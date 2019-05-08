@@ -51,6 +51,10 @@ class HomeyMusicCastDevice extends Homey.Device {
             }
         });
     }
+
+    onDeleted() {
+        this.device.destroy();
+    }
 }
 
 module.exports = HomeyMusicCastDevice;
