@@ -28,6 +28,71 @@
         "name": "Dmytro Sd",
         "email": "sinled@gmail.com"
     },
+    "capabilities": {
+        "input_select": {
+            "type": "enum",
+            "title": {
+                "en": "Select input"
+            },
+            "getable": true,
+            "setable": true,
+            "uiComponent": "picker",
+            "values": [
+                {
+                    "id": "airplay",
+                    "title": { "en": "AirPlay" }
+                },
+                {
+                    "id": "net_radio",
+                    "title": { "en": "Net Radio" }
+                },
+                {
+                    "id": "spotify",
+                    "title": { "en": "Spotify" }
+                },
+                {
+                    "id": "bluetooth",
+                    "title": { "en": "Bluetooth" }
+                },
+                {
+                    "id": "tuner",
+                    "title": { "en": "Tuner" }
+                },
+                {
+                    "id": "hdmi1",
+                    "title": { "en": "HDMI1" }
+                },
+                {
+                    "id": "hdmi2",
+                    "title": { "en": "HDMI2" }
+                },
+                {
+                    "id": "hdmi3",
+                    "title": { "en": "HDMI3" }
+                },
+                {
+                    "id": "hdmi4",
+                    "title": { "en": "HDMI4" }
+                },
+                {
+                    "id": "av1",
+                    "title": { "en": "AV1" }
+                },
+                {
+                    "id": "audio1",
+                    "title": { "en": "Audio1" }
+                },
+                {
+                    "id": "audio2",
+                    "title": { "en": "Audio2" }
+                },
+                {
+                    "id": "aux",
+                    "title": { "en": "AUX" }
+                }
+            ]
+        }
+    },
     "drivers": [
         {
             "id": "musiccast-device",
@@ -38,7 +103,8 @@
             "capabilities": [
                 "volume_set",
                 "onoff",
-                "volume_mute"
+                "volume_mute",
+                "input_select"
             ],
             "pair": [
                 {

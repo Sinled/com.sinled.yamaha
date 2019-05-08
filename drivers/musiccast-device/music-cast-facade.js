@@ -45,10 +45,11 @@ class MusicCastDeviceFacade extends EventEmitter {
 
     async syncState() {
         const data = await this._device.getStatus();
-        const { volume, mute, power } = JSON.parse(data);
+        const { volume, mute, power, input } = JSON.parse(data);
         this.deviceVolume = volume;
         this.deviceMute = mute;
         this.devicePowerState = power;
+        this.deviceInput = input;
     }
 
     get devicePowerState() {
@@ -89,6 +90,18 @@ class MusicCastDeviceFacade extends EventEmitter {
         return this._mute;
     }
 
+    get deviceInput() {
+        return this._input;
+    }
+
+    set deviceInput(input) {
+        if (input !== this._input) {
+            this._input = input;
+            this.emit('onDeviceInputChange', this._input);
+        }
+        return this._input;
+    }
+
     async power(on) {
         if (on) {
             return this._device.powerOn();
@@ -108,6 +121,10 @@ class MusicCastDeviceFacade extends EventEmitter {
     async setVolumeTo(value) {
         let absoluteDeviceVolume = this.getAbsoluteDeviceVolume(value);
         return this._device.setVolumeTo(absoluteDeviceVolume);
+    }
+
+    async selectInput(input) {
+        return this._device.setInput(input);
     }
 
     // Convert percentage volume to device absolute volume, with custom volume limits

@@ -20,37 +20,29 @@ class HomeyMusicCastDevice extends Homey.Device {
         this.registerCapabilityListener('onoff', this.onCapabilityOnOff.bind(this));
         this.registerCapabilityListener('volume_set', this.onCapabilityVolumeSet.bind(this));
         this.registerCapabilityListener('volume_mute', this.onCapabilityVolumeMute.bind(this));
+        this.registerCapabilityListener('input_select', this.onCapabilityInputSelect.bind(this));
+
         // Real devices listeners
         this.device.on('onPowerStateChange', this.onRealDeviceStateChange.bind(this, 'onoff'));
         this.device.on('onDeviceVolumeChange', this.onRealDeviceStateChange.bind(this, 'volume_set'));
         this.device.on('onDeviceMuteChange', this.onRealDeviceStateChange.bind(this, 'volume_mute'));
+        this.device.on('onDeviceInputChange', this.onRealDeviceStateChange.bind(this, 'input_select'));
     }
 
-    async onCapabilityOnOff(isOn, options, callback) {
-        try {
-            await this.device.power(isOn);
-            callback(null, isOn);
-        } catch (e) {
-            callback(e);
-        }
+    async onCapabilityOnOff(isOn) {
+        return await this.device.power(isOn);
     }
 
-    async onCapabilityVolumeSet(volume, options, callback) {
-        try {
-            await this.device.setVolumeTo(volume);
-            callback(null, volume);
-        } catch (e) {
-            callback(e);
-        }
+    async onCapabilityVolumeSet(volume) {
+        return await this.device.setVolumeTo(volume);
     }
 
-    async onCapabilityVolumeMute(isMute, options, callback) {
-        try {
-            await this.device.mute(isMute);
-            callback(null, isMute);
-        } catch (e) {
-            callback(e);
-        }
+    async onCapabilityVolumeMute(isMute) {
+        return await this.device.mute(isMute);
+    }
+
+    async onCapabilityInputSelect(input) {
+        return await this.device.selectInput(input);
     }
 
     onRealDeviceStateChange(capability, newValue) {
