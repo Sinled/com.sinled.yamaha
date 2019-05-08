@@ -6,7 +6,7 @@ const middleValueFromTriplet = require('../../utils/middle-value-from-triplet');
 
 const POLL_INTERVAL = 5 * 1000; // 5 seconds
 
-class MusicCastDevice extends EventEmitter {
+class MusicCastDeviceFacade extends EventEmitter {
     static async discover() {
         const yamaha = new Yamaha();
         const [ip, name, model, id] = await yamaha.discover();
@@ -149,4 +149,4 @@ class MusicCastDevice extends EventEmitter {
     }
 }
 
-module.exports = MusicCastDevice;
+module.exports = MusicCastDeviceFacade;

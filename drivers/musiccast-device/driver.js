@@ -1,7 +1,7 @@
 'use strict';
 
 const Homey = require('homey');
-const MusicCastDevice = require('./real-device');
+const MusicCastDevice = require('./music-cast-facade');
 
 class MusicCastDriver extends Homey.Driver {
     onInit() {
