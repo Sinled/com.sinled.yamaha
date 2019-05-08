@@ -12,6 +12,13 @@
     "category": [
         "music"
     ],
+    "tags": {
+        "en": [
+            "device",
+            "yamaha",
+            "musiccast"
+        ]
+    },
     "permissions": [],
     "images": {
         "large": "/assets/images/large.png",
