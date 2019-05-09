@@ -1,6 +1,6 @@
 {
     "id": "com.sinled.yamaha",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "compatibility": ">=2.0.0",
     "sdk": 2,
     "name": {
@@ -171,5 +171,29 @@
                 }
             ]
         }
-    ]
+    ],
+    "flow": {
+        "actions": [
+            {
+                "id": "input_select",
+                "title": {
+                    "en": "Select input"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=musiccast-device"
+                    },
+                    {
+                        "name": "input",
+                        "type": "autocomplete",
+                        "placeholder": {
+                            "en": "Select device"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 }

@@ -9,4 +9,4 @@ const middleValueFromTriplet = (...args) => {
     return middle;
 };
 
-module.exports = middleValueFromTriplet;
+module.exports = { middleValueFromTriplet };

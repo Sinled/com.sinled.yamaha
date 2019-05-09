@@ -2,7 +2,7 @@
 
 const Yamaha = require('yamaha-yxc-nodejs');
 const EventEmitter = require('events');
-const middleValueFromTriplet = require('../../utils/middle-value-from-triplet');
+const { middleValueFromTriplet } = require('../../utils/middle-value-from-triplet');
 
 const POLL_INTERVAL = 3 * 1000; // 5 seconds
 

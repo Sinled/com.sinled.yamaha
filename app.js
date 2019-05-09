@@ -1,22 +1,28 @@
 'use strict';
 
 const Homey = require('homey');
-// const Yamaha = require('yamaha-yxc-nodejs');
+const appData = require('./app.json');
+const { buildCapabilityAutocompleteList } = require('./utils/build-capability-autocomplete-list');
+
+const INPUT_SELECT_AUTOCOMPLETE_LIST = appData.capabilities.input_select.values;
 
 class MyApp extends Homey.App {
     async onInit() {
         this.log('MyApp is running...');
-        // const yamaha = new Yamaha('192.168.1.102');
-        // const startTime = process.hrtime();
-        // const result = await yamaha.getStatus();
-        // const data = JSON.parse(result);
-        // console.log(data);
-        // const endTime = process.hrtime(startTime);
-        // console.log(endTime);
-        // console.log(result);
-        // console.log('dest  ' + att.destination);
-        // console.log('api  ' + att.api_version);
-        // console.log(att);
+        this.registerFlowActions();
+    }
+
+    registerFlowActions() {
+        const inputSelectAction = new Homey.FlowCardAction('input_select');
+        inputSelectAction
+            .register()
+            .registerRunListener(async ({ input, device }) => {
+                return device.triggerCapabilityListener('input_select', input.id);
+            })
+            .getArgument('input')
+            .registerAutocompleteListener(async () => {
+                return buildCapabilityAutocompleteList(INPUT_SELECT_AUTOCOMPLETE_LIST);
+            });
     }
 }
 
