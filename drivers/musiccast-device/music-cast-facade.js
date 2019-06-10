@@ -4,7 +4,7 @@ const Yamaha = require('yamaha-yxc-nodejs');
 const EventEmitter = require('events');
 const { middleValueFromTriplet } = require('../../utils/middle-value-from-triplet');
 
-const POLL_INTERVAL = 3 * 1000; // 5 seconds
+const POLL_INTERVAL = 5 * 1000; // 5 seconds
 
 class MusicCastDeviceFacade extends EventEmitter {
     static async discover() {
@@ -27,7 +27,7 @@ class MusicCastDeviceFacade extends EventEmitter {
     constructor({ ip, maxVolume, minVolume }) {
         super();
         this._ip = ip;
-        this._pollTimeout = null;
+        this._pollInterval = null;
         this.maxVolume = maxVolume;
         this.minVolume = minVolume;
         this._device = new Yamaha(this._ip);
@@ -39,8 +39,7 @@ class MusicCastDeviceFacade extends EventEmitter {
     }
 
     async pollState() {
-        await this.syncState();
-        this._pollTimeout = setTimeout(this.pollState, POLL_INTERVAL);
+        this._pollInterval = setInterval(this.syncState, POLL_INTERVAL);
     }
 
     async syncState() {
@@ -164,7 +163,7 @@ class MusicCastDeviceFacade extends EventEmitter {
     }
 
     destroy() {
-        clearTimeout(this._pollTimeout);
+        clearInterval(this._pollInterval);
     }
 }
 
