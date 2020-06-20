@@ -1,0 +1,19 @@
+{
+    "actions": [
+        {
+            "id": "input_select",
+            "title": {
+                "en": "Select input"
+            },
+            "args": [
+                {
+                    "name": "input",
+                    "type": "autocomplete",
+                    "placeholder": {
+                        "en": "Select device"
+                    }
+                }
+            ]
+        }
+    ]
+}
