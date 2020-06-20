@@ -39,6 +39,7 @@
     "node/no-missing-require": ["error", {
       "allowModules": ["homey"]
     }],
+		"node/no-unpublished-require": "off",
 
     "no-prototype-builtins": "off"
   }
